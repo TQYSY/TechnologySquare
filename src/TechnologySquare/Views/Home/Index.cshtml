@@ -1,109 +1,203 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+<!--广告栏-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!--1.小点-->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
+    <!--2.主体内容项目-->
     <div class="carousel-inner" role="listbox">
+        <!--项目一：魅族-->
         <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+            <img src="~/images/img_Index/img_AD/魅族pro6.jpg" alt="第一" />
+            <div class="carousel-caption">
+                <h1>魅族</h1>
+                <p></p>
+                <p><a class="btn btn-primary" href="#" role="button">点击详情</a></p>
             </div>
         </div>
+        <!--项目二：苹果-->
         <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+            <img src="~/images/img_Index/img_AD/手机.jpg" alt="第二" />
+            <div class="carousel-caption">
+                <h1>苹果</h1>
+                <p></p>
+                <p><a class="btn btn-primary" href="#" role="button">点击详情</a></p>
             </div>
         </div>
+        <!--项目三：小米-->
         <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+            <img src="~/images/img_Index/img_AD/小米5s.jpg" alt="第三" />
+            <div class="carousel-caption">
+                <h1>小米</h1>
+                <p></p>
+                <p><a class="btn btn-primary" href="#" role="button">点击详情</a></p>
             </div>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+    <!--左右超链接-->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev" role="button">
+        <span class="glyphicon glyphicon-chevron-left">
+        </span>
     </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next" role="button">
+        <span class="glyphicon glyphicon-chevron-right">
+        </span>
     </a>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side libraries</li>
-            <li>Theming using <a href="http://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
+<!--系统厂商介绍-->
+<div class="Tab-summary">
+    <div class="container">
+        <!--1.定义标签-->
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li class="active"><a href="#tab-food" role="tab" data-toggle="tab">Apple</a></li>
+            <li><a href="#tab-noodle" role="tab" data-toggle="tab">Android</a></li>
+            <li><a href="#tab-drink" role="tab" data-toggle="tab">Winphone</a></li>
         </ul>
+        <!--2.标签内容-->
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-food">
+                <div class="row feature">
+                    <div class="col-xs-10 col-sm-10">
+                        <h2 class="feature-heading">苹果手机</h2>
+                        <p class="lead">Phone，是美国苹果公司研发的智能手机，它搭载iOS操作系统。第一代iPhone于2007年1月9日由苹果公司前首席执行官史蒂夫·乔布斯发布，并在2007年6月29日正式发售。</p>
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img class="img-responsive" src="~/images/img_Index/logo_Introduction/apple.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab-noodle">
+                <div class="row feature">
+                    <div class="col-sm-2">
+                        <img class="img-responsive" src="~/images/img_Index/logo_Introduction/android.jpg">
+                    </div>
+                    <div class="col-sm-10">
+                        <h2 class="feature-heading">安卓手机</h2>
+                        <p class="lead">Android是一种基于Linux的自由及开放源代码的操作系统，主要使用于移动设备，如智能手机和平板电脑，由Google公司和开放手机联盟领导及开发。尚未有统一中文名称，中国大陆地区较多人使用“安卓”或“安致”。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab-drink">
+                <div class="row feature">
+                    <div class="col-sm-10">
+                        <h2 class="feature-heading">winphone</h2>
+                        <p class="lead">Windows Phone(简称为WP)是微软于2010年10月21日正式发布的一款手机操作系统，初始版本命名为Windows Phone 7.0[1]  。基于Windows CE内核，采用了一种称为Metro的用户界面(UI)，并将微软旗下的Xbox Live游戏、Xbox Music音乐与独特的视频体验集成至手机中。</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img class="img-responsive" src="~/images/img_Index/logo_Introduction/winphone.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699562">Add an appsetting in config and access it in app.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run & Deploy</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+</div>
+
+<!--商品单品推荐-->
+<div class="choose">
+    <div class="container">
+        <!--第一行，标题以标签按钮-->
+        <div class="row">
+            <div class="rol-md-12">
+                <!--1.模块标题图片-->
+                <div class="navbar-header hidden-xs">
+                    <a class="navbar-brand" href="#">
+                        <!--<img id="title-img" src="#"/>-->
+                        <h2>欢迎来到单品推荐</h2>
+                    </a>
+                </div>
+                <!--2.标签按钮-->
+                <ul class="nav nav-pills navbar-right" role="tablist">
+                    <li>
+                        <a role="tab" data-toggle="tab" href="#firstpage">
+                            <span class="glyphicon glyphicon-chevron-left">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a role="tab" data-toggle="tab" href="#secondpage">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--第二行,图片展示列表-->
+        <div class="row">
+            <div class="tab-content">
+                <!--1.第一页-->
+                <div role="tabpanel" class="tab-pane active" id="firstpage">
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机</p>
+                        <p>120.00</p>
+                    </div>
+                </div>
+                <!--2.第二页-->
+                <div role="tabpanel" class="tab-pane" id="secondpage">
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                        <img src="~/images/img_Index/img_hot/sj_1.png" />
+                        <p>手机2</p>
+                        <p>120.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
