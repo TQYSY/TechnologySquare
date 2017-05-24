@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-TechnologySquare-cd3b7cf7-895d-475c-a516-4f5bb8a4c69c",
 
   "dependencies": {
@@ -43,7 +43,8 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.AspNetCore.Session": "1.0.0"
   },
 
   "tools": {
