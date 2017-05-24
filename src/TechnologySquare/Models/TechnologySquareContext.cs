@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace TechnologySquare.Models
 {
-    public partial class 手机交易系统Context : DbContext
+    public partial class TechnologySquareContext : DbContext
     {
-        public 手机交易系统Context(DbContextOptions<手机交易系统Context> options) : base(options)
+        public TechnologySquareContext(DbContextOptions<TechnologySquareContext> options) : base(options)
         {
 
         }

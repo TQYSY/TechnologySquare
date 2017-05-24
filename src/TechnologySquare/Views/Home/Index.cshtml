@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Index Page";
+    Layout = "_Layout";
+
 }
+@using TechnologySquare.Models;
 
 <!--广告栏-->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -132,69 +135,54 @@
         <div class="row">
             <div class="tab-content">
                 <!--1.第一页-->
-                <div role="tabpanel" class="tab-pane active" id="firstpage">
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
+                @foreach (ProductList pl in Model.hotProducts)
+                {
+                    <div role="tabpanel" class="tab-pane active" id="firstpage">
+                        <div class="product-item col-md-2 col-sm-4 col-xs-6">
+                            <img src="~/images/img_Index/img_hot/sj_1.png" />
+                            <p>@pl.p.Productname</p>
+                            <p>@pl.p.Price</p>
+                            <a type="button" href="/Cart/AddCart/@pl.p.ObjId">购买</a>
+                        </div>
                     </div>
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
-                    </div>
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
-                    </div>
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
-                    </div>
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
-                    </div>
-                    <div class="product-item col-md-2 col-sm-4 col-xs-6">
-                        <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机</p>
-                        <p>120.00</p>
-                    </div>
-                </div>
+                }
                 <!--2.第二页-->
                 <div role="tabpanel" class="tab-pane" id="secondpage">
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                     <div class="product-item col-md-2 col-sm-4 col-xs-6">
                         <img src="~/images/img_Index/img_hot/sj_1.png" />
-                        <p>手机2</p>
-                        <p>120.00</p>
+                        <p>手机</p>
+                        <p>价格</p>
+                        <a type="button" href="#">购买</a>
                     </div>
                 </div>
             </div>
