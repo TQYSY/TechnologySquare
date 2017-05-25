@@ -48,7 +48,7 @@ namespace TechnologySquare.Controllers
                                      select
                                          new CartItem
                                          {
-                                             
+
                                              productName = p.Productname,
                                              description = p.Description,
                                              price = p.Price,
@@ -90,6 +90,23 @@ namespace TechnologySquare.Controllers
             }
 
             return Index();
+        }
+
+        public RedirectResult deleCartRow(int id)
+        {
+            List<int[]> curCart = HttpContext.Session.GetJson<List<int[]>>("Cart");
+            curCart.RemoveAt(id);
+            HttpContext.Session.SetJson("Cart", curCart);
+            return Redirect("/Cart?retUrl=" + Request.Query["retUrl"].ToString());
+        }
+
+        public RedirectResult updateCartRow(int id)
+        {
+            int value = int.Parse(Request.Query["value"].ToString());
+            List<int[]> curCart = HttpContext.Session.GetJson<List<int[]>>("Cart");
+            curCart[id][1] = value;
+            HttpContext.Session.SetJson("Cart", curCart);
+            return Redirect("/Cart?retUrl=" + Request.Query["retUrl"].ToString());
         }
 
 
