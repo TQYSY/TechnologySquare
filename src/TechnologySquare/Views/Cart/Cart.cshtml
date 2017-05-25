@@ -6,6 +6,37 @@
 
 @using TechnologySquare.Models;
 
+<script>
+    function _doEdit(row) {
+        document.getElementById('edit_' + row).style.display = 'none';
+        document.getElementById('update_' + row).style.display = 'block';
+        document.getElementById('qtyDsp_' + row).style.display = 'none';
+        document.getElementById('qtyIn_' + row).style.display = 'block';
+    }
+
+    function _doCancel(row) {
+        document.getElementById('edit_' + row).style.display = 'block';
+        document.getElementById('update_' + row).style.display = 'none';
+        document.getElementById('qtyDsp_' + row).style.display = 'block';
+        document.getElementById('qtyIn_' + row).style.display = 'none';
+    }
+
+    function _doDelete(row, retUrl) {
+        window.location.assign("/Cart/deleCartRow/" + row + "?retUrl=" + retUrl);
+    }
+
+    function _doUpdate(row, oldvalue, retUrl) {
+        var newValue = document.getElementById('inQty_' + row).value;
+        if (newValue != oldvalue) {
+            window.location.assign("/Cart/updateCartRow/" + row + "?value=" + newValue + "&retUrl=" + retUrl);
+        }
+        else
+            _doCancel(row);
+    }
+
+
+</script>
+
 <html lang="en" ng-app="cart">
 <head>
     <meta charset="UTF-8">
@@ -31,11 +62,20 @@
                 <tr>
                     <td>@cartItem.id</td>
                     <td>@cartItem.productName</td>
-                    <td class="bold">@cartItem.price</td>
+                    <td id="price_@cartRow" class="bold">@cartItem.price</td>
                     <td>
-                        <button type="button" class="btn btn-default btn-xs" ng-click="reduce(item.id)" ng-disabled="item.quantity<=1">－</button>
-                        <input type="text" size="5" ng-model="@cartItem.amount" ng-keydown="quantityKeydown()" ng-keyup="quantityKeyup()">
-                        <button type="button" class="btn btn-default btn-xs" ng-click="add(item.id)">＋</button>
+                        @*<button type="button" class="btn btn-default btn-xs" onclick="deduce()">－</button>*@
+                        <div id="edit_@cartRow" style="display:block;">
+                            <a type="button" href="javascript:_doEdit(@cartRow)" style="color:#330099;">编辑</a>
+                        </div>
+                        <div id="update_@cartRow" style="display:none">
+                            <a href="javascript:_doUpdate(@cartRow,@cartItem.amount,'@ViewBag.continueBuy')" style="color:#330099;">更新</a>&nbsp;&nbsp;
+                            <a href="javascript:_doCancel(@cartRow)" style="color:#330099;">取消</a>
+                        </div>
+                        <div id="qtyDsp_@cartRow" style="display:block;">@cartItem.amount</div>
+                        <div id="qtyIn_@cartRow" style="display:none;"><input type="number" id="inQty_@cartRow" size="5" value="@cartItem.amount"></div>
+
+                        @*<button type="button" class="btn btn-default btn-xs" onclick="add()">＋</button>*@
                     </td>
                     <td class="bold mark">{{item.price*item.quantity|number:2}}</td>
                     <td>
