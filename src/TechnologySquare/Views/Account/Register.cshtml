@@ -5,10 +5,11 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Register";
     Layout = "_Layout";
 }
 
+<link rel="stylesheet" href="~/css/login.css" />
 <section>
     <div class="banner-box">
         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="main-form">
