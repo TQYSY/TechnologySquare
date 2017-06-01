@@ -9,6 +9,7 @@ ol,ul{
 }
 a{
 	text-decoration:none;
+    color:black;
 }
 .clear{
 	clear::both;
@@ -23,7 +24,7 @@ a:link,
 a:hover,
 a:visited,
 a:active {
-  color: #fff;
+  color: #515151;
   text-decoration: none;
 }
 
@@ -86,6 +87,7 @@ margin: 0;
 padding: 0;
 border: 0;
 list-style: none;
+
 }
 
 user agent stylesheetdiv {
@@ -104,14 +106,15 @@ display: block;
 }
 
 .main-form {
-	width: 398px;
-	position: absolute;
-	top: 16%;
-	right: 80px;
-	background-color: #FFF;
-	padding: 5px 35px 10px;
-    border-radius: 2px;
-    margin-top: 45px;
+	width: 324px;
+height: 350px;
+position: absolute;
+top: 16%;
+right: 0px;
+background-color: #FFF;
+padding: 5px 25px 50px;
+border-radius: 2px;
+margin-top: 105px;
 
 }
 
@@ -303,6 +306,7 @@ a, a:hover, a:focus {
 	color: #19b9e7;
 	text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+
 }
 
 h1, h2 {
@@ -319,6 +323,12 @@ h3 {
     color:#666;
     line-height: 30px;
 }
+
+h4 {
+    text-align: center;
+
+}
+
 
 .btn-link-1 {
 	display: inline-block;
@@ -355,7 +365,7 @@ a.fullBtnBlue:hover {
     color: #fff;
 }
 
-a.fullBtnBlue {
+.fullBtnBlue {
     width: 270px;
     display: block;
     height: 46px;

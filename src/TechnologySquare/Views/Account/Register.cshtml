@@ -1,42 +1,49 @@
 ﻿@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "_Layout";
 }
+<link rel="stylesheet" type="text/css" href="~/css/login.css" />
 
-<h2>@ViewData["Title"].</h2>
+<div class="banner-box">
+    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="main-form">
+        <h4>欢迎注册</h4>
 
-<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-    <h4>Create a new account.</h4>
-    <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Password" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="ConfirmPassword" class="form-control" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Register</button>
-        </div>
-    </div>
-</form>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                @*<label asp-for="Email" class="col-md-2 control-label"></label>*@
 
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}
+                <input asp-for="Email" class="inp-focus" placeholder='请输入邮箱' autocomplete='off' />
+                <span asp-validation-for="Email" class="inp-focus"></span>
+            </div>
+        </div>
+
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                @*<label asp-for="Password" class="col-md-2 control-label"></label>*@
+
+                <input asp-for="Password" class="inp-focus" placeholder='请输入密码' autocomplete='off' />
+                <span asp-validation-for="Password" class="inp-focus"></span>
+            </div>
+        </div>
+
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                @*<label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>*@
+
+                <input asp-for="ConfirmPassword" class="inp-focus" placeholder='请确认密码' autocomplete='off' />
+                <span asp-validation-for="ConfirmPassword" class="inp-focus"></span>
+            </div>
+        </div>
+
+
+        
+            <button type="submit" class="fullBtnBlue">注册</button>
+       
+
+    </form>
+</div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }
