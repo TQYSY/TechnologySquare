@@ -30,7 +30,15 @@ namespace TechnologySquare.Controllers
             }
             return View(ivm);
         }
-        
+        public IActionResult Detail()
+        {
+            return View();
+        }
+        public IActionResult Browse()
+        {
+            return View();
+        }
+
 
         public IActionResult Error()
         {

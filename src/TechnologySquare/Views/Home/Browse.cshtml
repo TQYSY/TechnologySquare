@@ -1,0 +1,401 @@
+﻿@{
+    ViewData["Title"] = "Browse Page";
+    Layout = "_Layout";
+}
+
+<link href="~/css/De.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text./css" href="~/css/Detail.css" />
+
+<script type="text/javascript">
+$(function(){
+$(".subNav").click(function(){
+			$(this).toggleClass("currentDd").siblings(".subNav").removeClass("currentDd")
+			$(this).toggleClass("currentDt").siblings(".subNav").removeClass("currentDt")
+
+			// 修改数字控制速度， slideUp(500)控制卷起速度
+			$(this).next(".navContent").slideToggle(500).siblings(".navContent").slideUp(500);
+	})
+})
+</script>
+
+
+<body>
+
+    <table width="1194" align="center">
+        <tr>
+            <th height="95" class="P">手机交易网 商品列表页</th>
+        </tr>
+    </table>
+    <hr>
+
+
+    <div style="text-align:center;clear:both;">
+        <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+        <script src="/follow.js" type="text/javascript"></script>
+    </div>
+
+
+    <p>&nbsp;</p>
+    <table cellspacing="15" align="center">
+        <tr>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <td width="238" height="1513" valign="top">
+                        <!--侧边导航栏-->
+
+                        <table width="282" height="742" border="0">
+                            <tr>
+                                <th width="260" height="431">
+
+
+                                    <div class="subNavBox">
+                                        <div class="subNav currentDd currentDt">价格</div>
+                                        <ul class="navContent " style="display:block">
+                                            <li><a href="#">￥0-200</a></li>
+                                            <li><a href="#">￥200-500</a></li>
+                                            <li><a href="#">￥500-1000</a></li>
+                                            <li><a href="#">￥1000-</a></li>
+                                        </ul>
+                                        <div class="subNav">品牌</div>
+                                        <ul class="navContent">
+                                            <li><a href="#">小米</a></li>
+                                            <li><a href="#">华为</a></li>
+                                            <li><a href="#">苹果</a></li>
+                                            <li><a href="#">锤子</a></li>
+                                        </ul>
+                                        <div class="subNav">类型</div>
+                                        <ul class="navContent">
+                                            <li><a href="#">手机</a></li>
+                                            <li><a href="#">耳机</a></li>
+                                            <li><a href="#">充电器</a></li>
+                                            <li><a href="#">移动电源</a></li>
+                                        </ul>
+
+                                    </div>
+
+
+
+
+
+                                </th>
+                                <th width="12">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th height="100" colspan="2">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th height="100" colspan="2">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th height="100" colspan="2">&nbsp;</th>
+                            </tr>
+                        </table>
+
+                    </td>
+                </div>
+
+                <div class="col-md-9">
+                    <td width="931" valign="top">
+
+
+                        <table width="887" height="1600">
+                            <tr>
+                                <td height="30" colspan="3"><div class="zi">商品列表</div></td>
+                            </tr>
+
+
+                            <tr>
+                                <!--商品图片-->
+                                <th height="32" colspan="3">
+                                    <hr />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th width="289" height="443">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/P 10.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">华为 P 10  徕卡人像摄影 多彩外观设计，3D面部识别</th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/4X.jpg" width="248" height="273">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">小米 红米4X 高画质相机， 隐私双系统， 18天待机 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/M6.jpg" width="251" height="273">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">小米 小米手机6 1nit超暗夜光屏， 四轴光学防抖， 长焦+广角双摄 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th width="289" height="443">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/MM8.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">美图 M8 人工智能自拍， 六曲面3D玻璃机身 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/z17.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">努比亚 Z17 mini 背景虚化景深摄影， 超级截图 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/I7P.jpg" width="250" height="270">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">苹果 iPhone 7 Plus 两个镜头，一拍，即合， 防水防尘 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th width="289" height="443">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/ML.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">魅族 魅蓝note5 安全快充，实为捷径， 智能护眼，贴心护航 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/OPPO.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">OPPO R9S 0.3mm微缝天线， 双核对焦技术， 1600万像素IMX398传感</th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                                <th width="291">
+
+                                    <table width="267" height="359" align="center" class="B">
+                                        <tr>
+                                            <th height="282">
+                                                <div class="P">
+                                                    <img src="~/images/img_Detail/pro/CZ.jpg" width="241" height="254">
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th height="33" class="P">锤子 坚果Pro 自定义来电语音， 智能语义拖拽， 闪念胶囊 </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th height="83" class="P">
+                                                <div class="nobdr-btns">
+                                                    <button class="addcart hu"><img src="~/images/img_Detail/shop.png" width="25" height="25" />加入购物车</button>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th height="17" colspan="3">
+
+
+                                    <div class="digg">
+                                        <span class="disabled">&lt; </span>
+                                        <span class="current">1</span>
+                                        <a href="#?page=2">2</a>
+                                        <a href="#?page=3">3</a>
+                                        <a href="#?page=4">4</a>
+                                        <a href="http://www.divcss5.com/">5</a>
+                                        <a href="#?page=6">6</a>
+                                        <a href="#?page=7">7</a>
+                                        ...
+                                        <a href="#?page=199">199</a>
+                                        <a href="#?page=200">200</a>
+                                        <a href="#?page=2">
+                                            &gt;
+                                        </a>
+                                    </div>
+
+
+
+                                </th>
+                            </tr>
+                            <tr>
+                                <th height="17" colspan="3">&nbsp;</th>
+                            </tr>
+                        </table>
+
+                    </td>
+                </div>
+            </div>
+
+
+
+
+
+        </tr>
+    </table>
+
+    <script src="~/js/Detail.js" type="text/javascript"></script>
+    <style type="text/css">
+        <!--
+        .STYLE2 {
+            font-size: 16px;
+        }
+        -->
+    </style>
+
+</body>
