@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProductList
+@{
     ViewData["Title"] = "Detail Page";
     Layout = "_Layout";
 }
@@ -156,7 +157,7 @@ $(".subNav").click(function(){
                             <table width="581">
                                 <!--商品名字-->
                                 <tr>
-                                    <th width="573" height="52"><font size="6"><div class="sss">苹果 IPhone7 全网通智能手机</div></font></th>
+                                    <th width="573" height="52"><font size="6"><div class="sss">@Model.p.Productname</div></font></th>
                                 </tr>
 
                                 <!--商品价格-->
@@ -166,7 +167,7 @@ $(".subNav").click(function(){
 
                                         <table width="578" frame="below">
                                             <tr>
-                                                <th width="195" height="35"><div class="ooo">￥5388.00-5999.00</div></th>
+                                                <th width="195" height="35"><div class="ooo">￥@Model.p.Price</div></th>
                                                 <th width="207">
 
                                                     <div class="sss">
@@ -190,16 +191,16 @@ $(".subNav").click(function(){
 
                                 <!--商品简单参数介绍-->
                                 <tr>
-                                    <th height="35" align="left">商品名称：苹果IPhone 7</th>
+                                    <th height="35" align="left">商品名称：@Model.p.Productname</th>
                                 </tr>
                                 <tr>
-                                    <td height="35">商品编码：1200001</td>
+                                    <td height="35">商品编码：@Model.p.ObjId</td>
                                 </tr>
                                 <tr>
                                     <td height="35">简单描述：苹果IPhone 7代 全网智能手机</td>
                                 </tr>
                                 <tr>
-                                    <td height="34">市场价格：5999</td>
+                                    <td height="34">市场价格：@Model.p.Price</td>
                                 </tr>
                                 <tr>
                                     <td height="38"><p class="vip">普通会员价：<span>5799</span></p></td>

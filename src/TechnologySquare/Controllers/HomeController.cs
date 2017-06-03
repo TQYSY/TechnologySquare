@@ -25,14 +25,17 @@ namespace TechnologySquare.Controllers
             foreach (var p in hotProducts)
             {
                 ProductList pl = new ProductList();
-                pl.p = new Product { ObjId = p.ObjId, Productname = p.Productname, Price = p.Price, ProductId = p.ProductId };
+                pl.p = new Product { ObjId = p.ObjId, Productname = p.Productname, Price = p.Price, ProductId = p.ProductId};
                 ivm.hotProducts.Add(pl);
             }
             return View(ivm);
         }
-        public IActionResult Detail()
+        public IActionResult Detail(int id)
         {
-            return View();
+            ProductList pl = new ProductList();
+            pl.p = db.Product.Single<Product>(m => m.ObjId == id);
+
+            return View(pl);
         }
         public IActionResult Browse()
         {
