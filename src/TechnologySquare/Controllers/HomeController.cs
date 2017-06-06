@@ -25,7 +25,7 @@ namespace TechnologySquare.Controllers
             foreach (var p in hotProducts)
             {
                 ProductList pl = new ProductList();
-                pl.p = new Product { ObjId = p.ObjId, Productname = p.Productname, Price = p.Price, ProductId = p.ProductId, Product_img = p.Product_img};
+                pl.p = new Product { ObjId = p.ObjId, Productname = p.Productname, Price = p.Price, ProductId = p.ProductId, Product_Img = p.Product_Img };
                 ivm.hotProducts.Add(pl);
             }
             return View(ivm);

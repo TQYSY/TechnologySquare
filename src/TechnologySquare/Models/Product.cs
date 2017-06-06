@@ -10,6 +10,6 @@ namespace TechnologySquare.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public string ProductId { get; set; }
-        public string Product_img { get; set; }
+        public string Product_Img { get; set; }
     }
 }
