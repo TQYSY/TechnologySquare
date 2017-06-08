@@ -59,10 +59,12 @@ namespace TechnologySquare.Controllers
             ViewBag.Request = Request;
             //更新客户联系信息
             Customer curCust = db.Customer.Single(m => m.ObjId == ovm.curCustomer.ObjId);
+
             if (curCust.MobilePhone != ovm.curCustomer.MobilePhone && ovm.curCustomer.MobilePhone != "")
                 curCust.MobilePhone = ovm.curCustomer.MobilePhone;
             if (curCust.Adress != ovm.curCustomer.Adress && ovm.curCustomer.Adress != "")
                 curCust.Adress = ovm.curCustomer.Adress;
+
             db.SaveChanges();
             //保存订单。需做事务处理！在.NET EF core中，一个SaveChange方法所提交的内容会自动实现事务处理。
             bool succeed = true;
@@ -72,24 +74,40 @@ namespace TechnologySquare.Controllers
                 EntityEntry<Payment> p = db.Payment.Add(new Payment());
                 p.Entity.Amount = double.Parse(Request.Form["paymentAmt"]);
                 p.Entity.ThePaymentType = int.Parse(Request.Form["paymentType"]);
+                p.Entity.PaymentState = 0;
+
                 for (int i = 0; i < ovm.orderQty; i++)
                 {
-                    EntityEntry<Customer> cus = db.Customer.Add(new Customer());
-                    cus.Entity.Adress = Request.Form["adress_" + i].ToString().Trim();
-                    cus.Entity.UserName = Request.Form["username_" + i].ToString().Trim();
-                    cus.Entity.MobilePhone = Request.Form["mobilephone_" + i].ToString().Trim();
                     EntityEntry<Order> o = db.Order.Add(new Order());
-                    o.Entity.ThePayment = p.Entity.ObjId;
+                    o.Entity.ThePayment = p.Entity.ThePaymentType;
                     o.Entity.TheProduct = int.Parse(Request.Form["productId_" + i].ToString().Trim());
-                    o.Entity.Customermessage = curCust.ObjId;
+                    o.Entity.OrderState = 0;
+                    o.Entity.OrderTime = DateTime.Now;
+
+
+
+                    //思远版
+                    //EntityEntry<Customer> cus = db.Customer.Add(new Customer());
+                    //cus.Entity.Adress = Request.Form["adress_" + i].ToString().Trim();
+                    //cus.Entity.UserName = Request.Form["username_" + i].ToString().Trim();
+                    //cus.Entity.MobilePhone = Request.Form["mobilephone_" + i].ToString().Trim();
+                    //EntityEntry<Order> o = db.Order.Add(new Order());
+                    //o.Entity.ThePayment = p.Entity.ObjId;
+                    //o.Entity.TheProduct = int.Parse(Request.Form["productId_" + i].ToString().Trim());
+                    //o.Entity.Customermessage = curCust.ObjId;
+                    //db.SaveChanges();
+                    //payId = p.Entity.ObjId;
                     db.SaveChanges();
-                    payId = p.Entity.ObjId;
+                    //payId = p.Entity.ObjId;
+
+
                 }
             }
-            catch
+            catch(Exception e)
             {
                 succeed = false;
-                Response.WriteAsync("<script>alert('数据未成功保存，请重新尝试！');</script>");
+                Response.WriteAsync(e.ToString());
+                //throw (e);
             }
             if (succeed)
             {
@@ -99,18 +117,19 @@ namespace TechnologySquare.Controllers
                     if (pt.ObjId == int.Parse(Request.Form["paymentType"]))
                     {
                         paymentUrl = pt.Url;
-                        paymentMethod = pt.MethodName;
+                        paymentMethod = pt.TypeName;
                         break;
                     }
                 }
+
                 PayRequestInfo pri = new PayRequestInfo();
                 pri.Amt = Request.Form["paymentAmt"];
-                pri.MerId = "Tec001";
+                pri.MerId = "Team03";
                 pri.MerTransId = payId.ToString();
                 pri.PaymentTypeObjId = Request.Form["paymentType"];
                 pri.PostUrl = paymentUrl;
                 pri.ReturnUrl = "http://" + Request.Host + Url.Action("Index", "Payment");
-                //pri.CheckValue = RemotePost.getCheckValue(pri.MerId, pri.ReturnUrl, pri.PaymentTypeObjId, pri.Amt, pri.MerTransId);
+                pri.CheckValue = RemotePost.getCheckValue(pri.MerId, pri.ReturnUrl, pri.PaymentTypeObjId, pri.Amt, pri.MerTransId);
                 return View("PayRequest", pri);
             }
             else

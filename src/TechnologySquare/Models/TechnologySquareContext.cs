@@ -202,6 +202,8 @@ namespace TechnologySquare.Models
                 entity.Property(e => e.TransTime)
                     .HasColumnName("transTime")
                     .HasColumnType("datetime");
+
+                entity.Property(e => e.ThePaymentType).HasColumnName("PaymentState");
             });
 
             modelBuilder.Entity<PaymentType>(entity =>
