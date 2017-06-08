@@ -11,5 +11,8 @@ namespace TechnologySquare.Models
         public int? ThePayment { get; set; }
         public DateTime? OrderTime { get; set; }
         public int? OrderState { get; set; }
+
+        public virtual Payment ThePaymentNavigation { get; set; }
+        public virtual Product TheProductNavigation { get; set; }
     }
 }
