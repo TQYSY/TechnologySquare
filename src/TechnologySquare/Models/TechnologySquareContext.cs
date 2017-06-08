@@ -141,15 +141,19 @@ namespace TechnologySquare.Models
                     .HasColumnName("objId")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Adress).HasColumnType("nchar(10)");
+                entity.Property(e => e.Adress).HasColumnType("nchar(256)");
 
                 entity.Property(e => e.MobilePhone)
                     .HasColumnName("mobilePhone")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(256)");
 
                 entity.Property(e => e.UserName)
                     .HasColumnName("userName")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(256)");
+
+                entity.Property(e => e.Conname)
+                    .HasColumnName("Conname")
+                    .HasColumnType("nchar(256)");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -170,6 +174,8 @@ namespace TechnologySquare.Models
                 entity.Property(e => e.ThePayment).HasColumnName("thePayment");
 
                 entity.Property(e => e.TheProduct).HasColumnName("theProduct");
+
+                entity.Property(e => e.OrderState).HasColumnName("orderState");
             });
 
             modelBuilder.Entity<Payment>(entity =>

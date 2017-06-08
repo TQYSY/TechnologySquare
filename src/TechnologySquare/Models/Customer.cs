@@ -9,5 +9,6 @@ namespace TechnologySquare.Models
         public string MobilePhone { get; set; }
         public string UserName { get; set; }
         public string Adress { get; set; }
+        public string Conname { get; set; }
     }
 }

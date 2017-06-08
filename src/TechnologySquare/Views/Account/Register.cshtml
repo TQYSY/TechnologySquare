@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel
+﻿@model RegisterModel
 @{
     ViewData["Title"] = "Register";
     Layout = "_Layout";
@@ -18,7 +18,24 @@
                 <span asp-validation-for="Email" class="inp-focus"></span>
             </div>
         </div>
-
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                <input asp-for="Conname" class="inp-focus" placeholder='请输入名字' autocomplete='off' />
+                <span asp-validation-for="Conname" class="inp-focus"></span>
+            </div>
+        </div>
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                <input asp-for="MobilePhone" class="inp-focus" placeholder='请输入电话' autocomplete='off' />
+                <span asp-validation-for="MobilePhone" class="inp-focus"></span>
+            </div>
+        </div>
+        <div class="tab-title">
+            <div class='normalInput fieldInput'>
+                <input asp-for="Adress" class="inp-focus" placeholder='请输入地址' autocomplete='off' />
+                <span asp-validation-for="Adress" class="inp-focus"></span>
+            </div>
+        </div>
         <div class="tab-title">
             <div class='normalInput fieldInput'>
                 @*<label asp-for="Password" class="col-md-2 control-label"></label>*@

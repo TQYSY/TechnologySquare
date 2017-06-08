@@ -10,5 +10,6 @@ namespace TechnologySquare.Models
         public int? TheProduct { get; set; }
         public int? ThePayment { get; set; }
         public DateTime? OrderTime { get; set; }
+        public int? OrderState { get; set; }
     }
 }
