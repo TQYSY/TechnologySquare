@@ -51,7 +51,7 @@ namespace TechnologySquare.Models
         public List<OrderInfo> orders { get; set; }
         public int orderQty { get; set; }
     }
-    
+
     public class PayRequestInfo
     {
         public string PostUrl { get; set; }

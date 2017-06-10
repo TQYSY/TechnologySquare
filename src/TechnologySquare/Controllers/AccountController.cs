@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using TechnologySquare.Models;
 using TechnologySquare.Models.AccountViewModels;
 using TechnologySquare.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace TechnologySquare.Controllers
 {
@@ -30,14 +32,18 @@ namespace TechnologySquare.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
+
             TechnologySquareContext tsDB)
+
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+
             db = tsDB;
+
         }
 
         //
@@ -118,6 +124,7 @@ namespace TechnologySquare.Controllers
                     c.MobilePhone = model.MobilePhone;
                     c.Adress = model.Adress;
                     db.SaveChanges();
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

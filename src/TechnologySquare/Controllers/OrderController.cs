@@ -77,11 +77,14 @@ namespace TechnologySquare.Controllers
 
                 for (int i = 0; i < ovm.orderQty; i++)
                 {
+
                     EntityEntry<Orders> o = db.Orders.Add(new Orders());
+
                     o.Entity.ThePayment = p.Entity.ThePaymentType;
                     o.Entity.TheProduct = int.Parse(Request.Form["productId_" + i].ToString().Trim());
                     o.Entity.OrderState = 0;
                     o.Entity.OrderTime = DateTime.Now;
+
 
                     db.SaveChanges();
 
@@ -89,6 +92,7 @@ namespace TechnologySquare.Controllers
 
             }
             catch (Exception e)
+
             {
                 succeed = false;
                 Response.WriteAsync(e.ToString());
@@ -139,6 +143,7 @@ namespace TechnologySquare.Controllers
                 }
                 return View("Order", ovm);
             }
+
         }
 
     }

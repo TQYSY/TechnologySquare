@@ -14,6 +14,7 @@ namespace TechnologySquare.Models
 
         public virtual Customer CustomermessageNavigation { get; set; }
         public virtual PaymentType ThePaymentNavigation { get; set; }
+
         public virtual Product TheProductNavigation { get; set; }
     }
 }

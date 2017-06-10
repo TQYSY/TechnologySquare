@@ -13,6 +13,8 @@ namespace TechnologySquare.Models
         public string TransNo { get; set; }
         public int? PaymentState { get; set; }
 
+
         public virtual PaymentType ThePaymentTypeNavigation { get; set; }
+
     }
 }

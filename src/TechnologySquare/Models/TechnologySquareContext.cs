@@ -141,6 +141,7 @@ namespace TechnologySquare.Models
 
                 entity.Property(e => e.Adress).HasColumnType("nchar(256)");
 
+
                 entity.Property(e => e.Conname).HasColumnType("nchar(256)");
 
                 entity.Property(e => e.MobilePhone)
@@ -150,6 +151,7 @@ namespace TechnologySquare.Models
                 entity.Property(e => e.UserName)
                     .HasColumnName("userName")
                     .HasMaxLength(20);
+
             });
 
             modelBuilder.Entity<Orders>(entity =>
@@ -171,6 +173,7 @@ namespace TechnologySquare.Models
 
                 entity.Property(e => e.TheProduct).HasColumnName("theProduct");
 
+
                 entity.HasOne(d => d.CustomermessageNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Customermessage)
@@ -185,6 +188,7 @@ namespace TechnologySquare.Models
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.TheProduct)
                     .HasConstraintName("FK__Orders__theProdu__236943A5");
+
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -212,10 +216,12 @@ namespace TechnologySquare.Models
                     .HasColumnName("transTime")
                     .HasColumnType("datetime");
 
+
                 entity.HasOne(d => d.ThePaymentTypeNavigation)
                     .WithMany(p => p.Payment)
                     .HasForeignKey(d => d.ThePaymentType)
                     .HasConstraintName("FK__Payment__thePaym__2739D489");
+
             });
 
             modelBuilder.Entity<PaymentType>(entity =>

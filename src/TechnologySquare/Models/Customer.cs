@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TechnologySquare.Models
 {
@@ -17,5 +18,6 @@ namespace TechnologySquare.Models
         public string Conname { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
+
     }
 }
