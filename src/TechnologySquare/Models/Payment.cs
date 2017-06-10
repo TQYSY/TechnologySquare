@@ -11,5 +11,8 @@ namespace TechnologySquare.Models
         public string AccountNo { get; set; }
         public DateTime? TransTime { get; set; }
         public string TransNo { get; set; }
+        public int? PaymentState { get; set; }
+
+        public virtual PaymentType ThePaymentTypeNavigation { get; set; }
     }
 }

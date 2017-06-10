@@ -135,33 +135,33 @@ namespace TechnologySquare.Models
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_Customer");
+                    .HasName("PK__Customer__530A63AC54A57AA9");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
-                entity.Property(e => e.Adress).HasColumnType("nchar(10)");
+                entity.Property(e => e.Adress).HasColumnType("nchar(256)");
+
+                entity.Property(e => e.Conname).HasColumnType("nchar(256)");
 
                 entity.Property(e => e.MobilePhone)
                     .HasColumnName("mobilePhone")
-                    .HasColumnType("nchar(10)");
+                    .HasMaxLength(18);
 
                 entity.Property(e => e.UserName)
                     .HasColumnName("userName")
-                    .HasColumnType("nchar(10)");
+                    .HasMaxLength(20);
             });
 
-            modelBuilder.Entity<Order>(entity =>
+            modelBuilder.Entity<Orders>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_Order");
+                    .HasName("PK__Orders__530A63AC42DA0699");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
                 entity.Property(e => e.Customermessage).HasColumnName("customermessage");
+
+                entity.Property(e => e.OrderState).HasColumnName("orderState");
 
                 entity.Property(e => e.OrderTime)
                     .HasColumnName("orderTime")
@@ -170,161 +170,134 @@ namespace TechnologySquare.Models
                 entity.Property(e => e.ThePayment).HasColumnName("thePayment");
 
                 entity.Property(e => e.TheProduct).HasColumnName("theProduct");
+
+                entity.HasOne(d => d.CustomermessageNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Customermessage)
+                    .HasConstraintName("FK__Orders__customer__22751F6C");
+
+                entity.HasOne(d => d.ThePaymentNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.ThePayment)
+                    .HasConstraintName("FK__Orders__thePayme__245D67DE");
+
+                entity.HasOne(d => d.TheProductNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.TheProduct)
+                    .HasConstraintName("FK__Orders__theProdu__236943A5");
             });
 
             modelBuilder.Entity<Payment>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_Payment");
+                    .HasName("PK__Payment__530A63AC630AAB5A");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
                 entity.Property(e => e.AccountNo)
                     .HasColumnName("accountNo")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(100)");
 
                 entity.Property(e => e.Amount).HasColumnName("amount");
+
+                entity.Property(e => e.PaymentState).HasColumnName("paymentState");
 
                 entity.Property(e => e.ThePaymentType).HasColumnName("thePaymentType");
 
                 entity.Property(e => e.TransNo)
                     .HasColumnName("transNo")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(100)");
 
                 entity.Property(e => e.TransTime)
                     .HasColumnName("transTime")
                     .HasColumnType("datetime");
+
+                entity.HasOne(d => d.ThePaymentTypeNavigation)
+                    .WithMany(p => p.Payment)
+                    .HasForeignKey(d => d.ThePaymentType)
+                    .HasConstraintName("FK__Payment__thePaym__2739D489");
             });
 
             modelBuilder.Entity<PaymentType>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_PaymentType");
+                    .HasName("PK__PaymentT__530A63AC4063A7CB");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
                 entity.Property(e => e.MethodName)
-                    .IsRequired()
                     .HasColumnName("methodName")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(256)");
 
                 entity.Property(e => e.TypeName)
-                    .IsRequired()
                     .HasColumnName("typeName")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(256)");
 
                 entity.Property(e => e.Url)
-                    .IsRequired()
                     .HasColumnName("url")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(256)");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_Product");
+                    .HasName("PK__Product__530A63ACE0E2C447");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
                 entity.Property(e => e.Description)
-                    .IsRequired()
                     .HasColumnName("description")
-                    .HasColumnType("nchar(10)");
+                    .HasMaxLength(1000);
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.ProductId)
-                    .IsRequired()
                     .HasColumnName("productID")
-                    .HasColumnType("nchar(10)");
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Product_Img)
                     .HasColumnName("product_img")
                     .HasColumnType("varchar(200)");
 
                 entity.Property(e => e.Productname)
-                    .IsRequired()
                     .HasColumnName("productname")
-                    .HasColumnType("nchar(10)");
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<Productclass>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_productclass");
+                    .HasName("PK__Productc__530A63ACC0BED782");
 
-                entity.ToTable("productclass");
-
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
                 entity.Property(e => e.TheProduct).HasColumnName("theProduct");
 
                 entity.Property(e => e.TheProductType).HasColumnName("theProductType");
+
+                entity.HasOne(d => d.TheProductNavigation)
+                    .WithMany(p => p.Productclass)
+                    .HasForeignKey(d => d.TheProduct)
+                    .HasConstraintName("FK__Productcl__thePr__2BFE89A6");
+
+                entity.HasOne(d => d.TheProductTypeNavigation)
+                    .WithMany(p => p.Productclass)
+                    .HasForeignKey(d => d.TheProductType)
+                    .HasConstraintName("FK__Productcl__thePr__2CF2ADDF");
             });
 
             modelBuilder.Entity<Producttype>(entity =>
             {
                 entity.HasKey(e => e.ObjId)
-                    .HasName("PK_producttype");
+                    .HasName("PK__Productt__530A63AC5001A91E");
 
-                entity.ToTable("producttype");
+                entity.Property(e => e.ObjId).HasColumnName("objID");
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ClassType)
+                    .HasColumnName("classType")
+                    .HasColumnType("nchar(100)");
 
-                entity.Property(e => e.Type)
-                    .IsRequired()
-                    .HasColumnName("type")
-                    .HasColumnType("nchar(10)");
-            });
-
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.HasKey(e => e.ObjId)
-                    .HasName("PK_Role");
-
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name")
-                    .HasColumnType("nchar(10)");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.ObjId)
-                    .HasName("PK_User");
-
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasColumnName("password")
-                    .HasColumnType("nchar(10)");
-
-                entity.Property(e => e.TheRole)
-                    .IsRequired()
-                    .HasColumnName("theRole")
-                    .HasColumnType("nchar(10)");
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasColumnName("username")
-                    .HasColumnType("nchar(10)");
+                entity.Property(e => e.Type).HasColumnType("nchar(100)");
             });
         }
 
@@ -336,13 +309,11 @@ namespace TechnologySquare.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<PaymentType> PaymentType { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Productclass> Productclass { get; set; }
         public virtual DbSet<Producttype> Producttype { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<User> User { get; set; }
     }
 }
