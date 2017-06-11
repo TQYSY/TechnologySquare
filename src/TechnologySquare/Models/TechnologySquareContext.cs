@@ -268,6 +268,8 @@ namespace TechnologySquare.Models
                 entity.Property(e => e.Productname)
                     .HasColumnName("productname")
                     .HasMaxLength(256);
+
+                entity.Property(e => e.ProductState).HasColumnName("productState");
             });
 
             modelBuilder.Entity<Productclass>(entity =>

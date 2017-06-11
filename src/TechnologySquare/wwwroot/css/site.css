@@ -231,9 +231,19 @@ padding:10px;
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover{
 	color:#fff;
-	background-color:#5a9522;}
+	background-color:#5a9522;
+}
+
+.browse-item:hover{
+    border: 1px solid rgb(255, 70, 78);
+}
+
 @media(max-width:1024px){
 	a.morebtn{
 		max-width:400px;
-	}	
+	}
+
+    browse-item:hover {
+        border:none;
+    }	
 }

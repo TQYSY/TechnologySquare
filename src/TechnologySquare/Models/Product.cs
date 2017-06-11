@@ -17,6 +17,7 @@ namespace TechnologySquare.Models
         public double Price { get; set; }
         public string ProductId { get; set; }
         public string Product_Img { get; set; }
+        public int? ProductState { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
         public virtual ICollection<Productclass> Productclass { get; set; }

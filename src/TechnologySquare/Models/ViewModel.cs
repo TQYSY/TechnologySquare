@@ -19,7 +19,13 @@ namespace TechnologySquare.Models
         public Product p { get; set; }
     }
 
-    public class CartItem
+    public class ProductCat
+    {
+        public string typeName { get; set; }
+        public List<Producttype> types { get; set; }
+    }
+
+        public class CartItem
     {
         public string productName { get; set; }
         public double price { get; set; }
