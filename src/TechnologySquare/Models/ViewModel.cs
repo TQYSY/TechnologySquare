@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using TechnologySquare.Models.AccountViewModels;
 
 namespace TechnologySquare.Models
 {
@@ -16,6 +18,7 @@ namespace TechnologySquare.Models
 
     public class ProductList
     {
+        public int ObjId { get; set; }
         public Product p { get; set; }
     }
 
@@ -38,9 +41,12 @@ namespace TechnologySquare.Models
     public class OrderList
     {
         public DateTime orderTime { get; set; }
+        public double amount { get; set; }
         public string orderState { get; set; }
         public string productName { get; set; }
         public string name { get; set; }
+        public string product_Img { get; set; }
+        public DateTime transTime { get; set; }
     }
 
     public class OrderInfo
@@ -70,4 +76,34 @@ namespace TechnologySquare.Models
 
     }
 
+    public class MemberHomeModel
+    {
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "当前密码")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "新密码")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "确认新密码")]
+        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        public string ConfirmPassword { get; set; }
+        //public LocalPasswordModel PassWordModel { get; set; }
+        public RegisterModel CustomerInfo { get; set; }
+        public List<OrderList> Orders { get; set; }
+        public PagingInfo PagingInfo { get; set; }
+    }
+
+    public class PagingInfo
+    {
+        public int TotalItems { get; set; }
+        public int ItemsPerPage { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages => (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage);
+    }
 }

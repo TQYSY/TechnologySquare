@@ -1,18 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using TechnologySquare.Models;
+using TechnologySquare.Models.AccountViewModels;
+using TechnologySquare.Services;
+using TechnologySquare.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace TechnologySquare.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailSender _emailSender;
+        private readonly ISmsSender _smsSender;
+        private readonly ILogger _logger;
         private readonly TechnologySquareContext db;
 
-        public HomeController(TechnologySquareContext phonedb)
+        public HomeController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            ISmsSender smsSender,
+            ILoggerFactory loggerFactory,
+            TechnologySquareContext phonedb)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+            _smsSender = smsSender;
+            _logger = loggerFactory.CreateLogger<HomeController>();
             db = phonedb;
         }
 
@@ -67,6 +93,122 @@ namespace TechnologySquare.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult MemberHome(int page = 1, int pageSize = 3)
+        {
+            ViewBag.pwdDisp = "none";
+            string[] orderStates = { "初始", "已付款"};
+            string curName = User.Identity.Name;
+            MemberHomeModel mhm = new MemberHomeModel();
+            mhm.Orders = new List<OrderList>();
+            Customer c = db.Customer.Single(m => m.UserName == curName);
+            int custId = ViewBag.uid = c.ObjId;
+            mhm.CustomerInfo = new RegisterModel { Email = c.UserName, Conname = c.Conname, Adress = c.Adress, MobilePhone = c.MobilePhone };
+            var orderlist = from a in db.Orders
+                            where a.OrderState < 6 && a.Customermessage == custId
+                            join b in db.Product on a.TheProduct equals b.ObjId
+                            join p in db.Payment on a.ThePayment equals p.ObjId
+                            join d in db.Customer on a.Customermessage equals d.ObjId
+                            orderby a.OrderTime descending
+                            select new
+                            {
+                                name = d.Conname,
+                                orderTime = a.OrderTime,
+                                amount = p.Amount,
+                                orderState = (int)(a.OrderState),
+                                productName = b.Productname,
+                                product_Img = b.Product_Img,
+                                transTime = p.TransTime
+                            };
+            var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
+            foreach (var o in orders)
+            {
+                mhm.Orders.Add(new OrderList
+                {
+                    name = o.name,
+                    orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+                    amount = (double)(o.amount),
+                    orderState = orderStates[o.orderState],
+                    productName = o.productName,
+                    product_Img = o.product_Img,
+                    transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+                });
+            }
+            mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
+            return View("MemberHome", mhm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> MemberHome(MemberHomeModel mhm, int page = 1, int pageSize = 3)
+        {
+            ViewBag.pwdDisp = "block";
+
+            string curUser = User.Identity.Name;
+            var c = await _userManager.FindByNameAsync(curUser);
+            Customer cust = db.Customer.Single(m => m.UserName == curUser);
+            int custId = ViewBag.uid = cust.ObjId;
+            IdentityResult r = await _userManager.ChangePasswordAsync(c, mhm.OldPassword, mhm.NewPassword);
+            if (r.Succeeded)
+            {
+                ViewBag.pwdDisp = "none";
+            }
+            else
+            {
+                await Response.WriteAsync("<script>alert('密码更新失败！');</script>");
+            }
+
+            string[] orderStates = { "初始", "已付款"};
+            mhm.Orders = new List<OrderList>();
+            mhm.CustomerInfo = new RegisterModel { Email = cust.UserName, Conname = cust.Conname, MobilePhone = cust.MobilePhone, Adress = cust.Adress };
+            var orderlist = from a in db.Orders
+                            where a.OrderState < 6 && a.Customermessage == custId
+                            join b in db.Product on a.TheProduct equals b.ObjId
+                            join p in db.Payment on a.ThePayment equals p.ObjId
+                            join d in db.Customer on a.Customermessage equals d.ObjId
+                            orderby a.OrderTime descending
+                            select new
+                            {
+                                name = d.Conname,
+                                orderTime = a.OrderTime,
+                                amount = p.Amount,
+                                orderState = (int)(a.OrderState),
+                                productName = b.Productname,
+                                product_Img = b.Product_Img,
+                                transTime = p.TransTime
+                            };
+
+            var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
+            foreach (var o in orders)
+            {
+                mhm.Orders.Add(new OrderList
+                {
+                    name = o.name,
+                    orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+                    amount = (double)(o.amount),
+                    orderState = orderStates[o.orderState],
+                    productName = o.productName,
+                    product_Img = o.product_Img,
+                    transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+
+                });
+            }
+            mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
+            
+            return View("MemberHome", mhm);
+        }
+
+        public async void updateMemberInfo(int memberId, string memberConname, string memberMobile, string memberAdress)
+        {
+            Customer c = db.Customer.Single(m => m.ObjId == memberId);
+            c.Conname = memberConname;
+            c.MobilePhone = memberMobile;
+            c.Adress = memberAdress;
+            int result = db.SaveChanges();
+
+            Response.ContentType = "text/plain";
+            await Response.WriteAsync(result.ToString());
+        }
 
         public IActionResult Error()
         {
