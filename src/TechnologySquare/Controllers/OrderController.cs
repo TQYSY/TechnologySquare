@@ -79,7 +79,7 @@ namespace TechnologySquare.Controllers
                 {
 
                     EntityEntry<Orders> o = db.Orders.Add(new Orders());
-
+                    o.Entity.Customermessage = curCust.ObjId;
                     o.Entity.ThePayment = p.Entity.ThePaymentType;
                     o.Entity.TheProduct = int.Parse(Request.Form["productId_" + i].ToString().Trim());
                     o.Entity.OrderState = 0;
@@ -87,6 +87,7 @@ namespace TechnologySquare.Controllers
 
 
                     db.SaveChanges();
+                    payId = p.Entity.ObjId;
 
                 }
 

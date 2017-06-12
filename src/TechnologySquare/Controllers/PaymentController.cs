@@ -35,14 +35,13 @@ namespace TechnologySquare.Controllers
             PaymentType paymentMethod = db.PaymentType.Single(m => m.ObjId == paymentTypeObjId);
 
 
-            if (RemotePost.PaymentVerify(Request, out merId, out amt, out merTransId, out transId, out transTime) && merId == "Flower001")
+            if (RemotePost.PaymentVerify(Request, out merId, out amt, out merTransId, out transId, out transTime) && merId == "Team03")
             {
                 Payment pay = db.Payment.Single(m => m.ObjId == int.Parse(merTransId));
-                Orders[] orders = db.Orders.Where(m => m.ThePayment == int.Parse(merTransId)).ToArray<Orders>();
+                Orders[] orders = db.Orders.Where(m => m.OrderState == 0).ToArray<Orders>();/*ThePayment == int.Parse(merTransId)).ToArray<Orders>();*/
                 pay.TransTime = DateTime.Parse(transTime);
                 pay.TransNo = transId;
                 foreach (Orders or in orders)
-
                 {
                     or.OrderState = 1;
                 }
