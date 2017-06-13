@@ -101,40 +101,77 @@ namespace TechnologySquare.Controllers
             string curName = User.Identity.Name;
             MemberHomeModel mhm = new MemberHomeModel();
             mhm.Orders = new List<OrderList>();
+            //var Orders = db.Orders.Where<Orders>(m => m.Customermessage = db.Customer.SingleOrDefault(n => n.UserName == curName).ObjId);
+            //var theCustomerId = db.Customer.SingleOrDefault(u => u.UserName == curName).ObjId;
+            //foreach (var p in Orders)
+            //{
+            //    OrderList ol = new OrderList();
+            //    ol = new OrderList { ObjId = p.}
+            //}
+
             Customer c = db.Customer.Single(m => m.UserName == curName);
+
             int custId = ViewBag.uid = c.ObjId;
             mhm.CustomerInfo = new RegisterModel { Email = c.UserName, Conname = c.Conname, Adress = c.Adress, MobilePhone = c.MobilePhone };
             var orderlist = from a in db.Orders
                             where a.OrderState < 6 && a.Customermessage == custId
                             join b in db.Product on a.TheProduct equals b.ObjId
-                            join p in db.Payment on a.ThePayment equals p.ObjId
+                            //join p in db.Payment on a.ThePayment equals p.ObjId
                             join d in db.Customer on a.Customermessage equals d.ObjId
-                            orderby a.OrderTime descending
+                            //orderby a.OrderTime descending
                             select new
                             {
                                 name = d.Conname,
                                 orderTime = a.OrderTime,
-                                amount = p.Amount,
+                                //amount = p.Amount,
                                 orderState = (int)(a.OrderState),
                                 productName = b.Productname,
                                 product_Img = b.Product_Img,
-                                transTime = p.TransTime
+                                //transTime = p.TransTime
                             };
-            var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
-            foreach (var o in orders)
+            //var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
+            foreach (var o in orderlist)
             {
                 mhm.Orders.Add(new OrderList
                 {
                     name = o.name,
                     orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
-                    amount = (double)(o.amount),
                     orderState = orderStates[o.orderState],
                     productName = o.productName,
-                    product_Img = o.product_Img,
-                    transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+                    product_Img = o.product_Img
+                    //amount = (double)(o.amount)
                 });
             }
-            mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
+
+
+            //foreach (var o in orderlist)
+            //{
+            //    mhm.Orders.Add(new OrderList
+            //    {
+            //        name = o.name,
+            //        orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+            //        amount = (double)(o.amount),
+            //        orderState = orderStates[o.orderState],
+            //        productName = o.productName,
+            //        product_Img = o.product_Img,
+            //        transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+            //    });
+            //}
+
+            //foreach (var o in orders)
+            //{
+            //    mhm.Orders.Add(new OrderList
+            //    {
+            //        name = o.name,
+            //        orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+            //        amount = (double)(o.amount),
+            //        orderState = orderStates[o.orderState],
+            //        productName = o.productName,
+            //        product_Img = o.product_Img,
+            //        transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+            //    });
+            //}
+            //mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
             return View("MemberHome", mhm);
         }
 
@@ -158,43 +195,87 @@ namespace TechnologySquare.Controllers
                 await Response.WriteAsync("<script>alert('密码更新失败！');</script>");
             }
 
-            string[] orderStates = { "初始", "已付款"};
+            string[] orderStates = { "初始", "已付款" };
             mhm.Orders = new List<OrderList>();
             mhm.CustomerInfo = new RegisterModel { Email = cust.UserName, Conname = cust.Conname, MobilePhone = cust.MobilePhone, Adress = cust.Adress };
             var orderlist = from a in db.Orders
                             where a.OrderState < 6 && a.Customermessage == custId
                             join b in db.Product on a.TheProduct equals b.ObjId
-                            join p in db.Payment on a.ThePayment equals p.ObjId
+                            //join p in db.Payment on a.ThePayment equals p.ObjId
                             join d in db.Customer on a.Customermessage equals d.ObjId
-                            orderby a.OrderTime descending
+                            //orderby a.OrderTime descending
                             select new
                             {
                                 name = d.Conname,
                                 orderTime = a.OrderTime,
-                                amount = p.Amount,
+                                //amount = p.Amount,
                                 orderState = (int)(a.OrderState),
                                 productName = b.Productname,
-                                product_Img = b.Product_Img,
-                                transTime = p.TransTime
+                                product_Img = b.Product_Img
+                                //transTime = p.TransTime
                             };
-
-            var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
-            foreach (var o in orders)
+            //var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
+            foreach (var o in orderlist)
             {
                 mhm.Orders.Add(new OrderList
                 {
                     name = o.name,
                     orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
-                    amount = (double)(o.amount),
                     orderState = orderStates[o.orderState],
                     productName = o.productName,
-                    product_Img = o.product_Img,
-                    transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
-
+                    product_Img = o.product_Img
+                    //amount = (double)(o.amount)
                 });
             }
-            mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
-            
+            //var orderlist = from a in db.Orders
+            //                where a.OrderState < 6 && a.Customermessage == custId
+            //                join b in db.Product on a.TheProduct equals b.ObjId
+            //                join p in db.Payment on a.ThePayment equals p.ObjId
+            //                join d in db.Customer on a.Customermessage equals d.ObjId
+            //                orderby a.OrderTime descending
+            //                select new
+            //                {
+            //                    name = d.Conname,
+            //                    orderTime = a.OrderTime,
+            //                    amount = p.Amount,
+            //                    orderState = (int)(a.OrderState),
+            //                    productName = b.Productname,
+            //                    product_Img = b.Product_Img,
+            //                    transTime = p.TransTime
+            //                };
+
+            //foreach (var o in orderlist)
+            //{
+            //    mhm.Orders.Add(new OrderList
+            //    {
+            //        name = o.name,
+            //        orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+            //        amount = (double)(o.amount),
+            //        orderState = orderStates[o.orderState],
+            //        productName = o.productName,
+            //        product_Img = o.product_Img,
+            //        transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+            //    });
+            //}
+
+            //var orders = orderlist.Skip((page - 1) * pageSize).Take(pageSize);
+            //foreach (var o in orders)
+            //{
+            //    mhm.Orders.Add(new OrderList
+            //    {
+            //        name = o.name,
+            //        orderTime = o.orderTime == null ? default(DateTime) : o.orderTime.Value,
+            //        amount = (double)(o.amount),
+            //        orderState = orderStates[o.orderState],
+            //        productName = o.productName,
+            //        product_Img = o.product_Img,
+            //        transTime = o.transTime == null ? default(DateTime) : o.transTime.Value
+
+            //    });
+            //}
+            //mhm.PagingInfo = new PagingInfo { CurrentPage = page, ItemsPerPage = pageSize, TotalItems = orderlist.Count() };
+
+
             return View("MemberHome", mhm);
         }
 

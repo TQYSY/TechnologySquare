@@ -97,7 +97,7 @@
         }
     </script>
 }
-<link rel="stylesheet" type="text/css" href="~/css/Manage.css" />
+@*<link rel="stylesheet" type="text/css" href="~/css/Manage.css" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -107,8 +107,8 @@
                 <li><a class="nav-sidebar" href="#new2">订单查询</a></li>
                 
             </ul>
-         </div>
-        <div id="new1" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+         </div>*@
+        @*<div id="new1" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">会员信息</h1>
             <img src="~/images/img_Manage/grzx.jpg" />
             @*<table style="width: 100%; height: 688px;" >
@@ -179,7 +179,7 @@
                         </div>
                     </div>
                 </form>
-            <div id="#new2" class="table-responsive">
+            @*<div id="#new2" class="table-responsive">*@
                 @*<td style="vertical-align:top;">*@
                     <h3>订单一览</h3>
                     <table border="1" style="border-width:1px;border-collapse:collapse;width:100%;">
@@ -188,8 +188,8 @@
                             <th>收件人姓名</th>
                             <th>商品</th>
                             <th>图片</th>
-                            <th>金额</th>
-                            <th>付款时间</th>
+                            @*<th>金额</th>*@<!--金额有问题-->
+                            @*<th>付款时间</th>*@
                             <th>订单状态</th>
                         </tr>
                         @foreach (var cartItem in Model.Orders)
@@ -199,20 +199,20 @@
                                 <td>@cartItem.name</td>
                                 <td>@cartItem.productName</td>
                                 <td><img src="/images/@cartItem.product_Img" style="width:120px;height:120px" /></td>
-                                <td>@cartItem.amount</td>
-                                <td>@cartItem.transTime</td>
+                                @*<td>@cartItem.amount</td>*@
+                                @*<td>@cartItem.transTime</td>*@
                                 <td>@cartItem.orderState</td>
                             </tr>
                         }
                     </table>
-                    <div page-model="@Model.PagingInfo" page-action="MemberHome"></div>
+                    @*<div page-model="@Model.PagingInfo" page-action="MemberHome"></div>*@
                 @*</td>*@
-                    </div>
+                    @*</div>*@
                 @*</tr>
                 </table>*@
-            </div>
+            @*</div>*@
 
 
 
-    </div>
-</div>
+    @*</div>*@
+@*</div>*@

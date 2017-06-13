@@ -20,6 +20,15 @@ namespace TechnologySquare.Models
     {
         public int ObjId { get; set; }
         public Product p { get; set; }
+        public List<Product> Catproduct { get; set; }
+        public Orders o { get; set; }
+        public List<Product> PProducts { get; set; }
+        public Customer co { get; set; }
+        public List<Customer> COrders { get; set; }
+        public string ProductName { get; set; }
+        public double? Price { get; set; }
+        public string Product_img { get; set; }
+
     }
 
     public class ProductCat
@@ -40,6 +49,7 @@ namespace TechnologySquare.Models
 
     public class OrderList
     {
+        public int ObjId { get; set; }
         public DateTime orderTime { get; set; }
         public double amount { get; set; }
         public string orderState { get; set; }
